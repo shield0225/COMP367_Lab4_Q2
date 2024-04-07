@@ -51,7 +51,7 @@ steps:
   displayName: 'Push to Azure Artifacts NuGet Package'
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg;!$(Build.ArtifactStagingDirectory)/*.symbols.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'c7c42f17-f269-7f8e-b865-35e77324116e'
     arguments: '--skip-duplicate'
