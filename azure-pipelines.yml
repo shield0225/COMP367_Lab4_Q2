@@ -39,10 +39,12 @@ steps:
     minorVersion: '0'
     patchVersion: '0'
 
-- task: DotNetCoreCLI@2
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish NuGet Package'
   inputs:
-    command: 'publish'
-    publishWebProjects: true
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 - task: DotNetCoreCLI@2
   displayName: 'Push to Azure Artifacts NuGet Package'
