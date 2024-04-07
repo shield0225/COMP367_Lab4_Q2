@@ -16,11 +16,8 @@ variables:
 
 steps:
 
-- script: echo "##vso[task.setvariable variable=DOTNET_ROOT]C:\Program Files\dotnet"
-  displayName: 'Set DOTNET_ROOT'
-
 - task: DotNetCoreCLI@2
-  displayName: 'Restore NuGet Packages'
+  displayName: 'Restore Package'
   inputs:
     command: 'restore'
     projects: '**/*.csproj'
@@ -36,21 +33,22 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
+    includesource: true
     versioningScheme: 'byPrereleaseNumber'
-    includeSymbols: true
+    majorVersion: '1'
+    minorVersion: '0'
+    patchVersion: '0'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish NuGet Package'
+- task: DotNetCoreCLI@2
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'nuget'
-    publishLocation: 'container'
+    command: 'publish'
+    publishWebProjects: true
 
 - task: DotNetCoreCLI@2
   displayName: 'Push to Azure Artifacts NuGet Package'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-    nugetConfigPath: 'NuGet.config'
+    nuGetFeedType: 'internal'
     publishVstsFeed: 'e0e8f572-92bc-4b4e-9732-9dfb3df5bede'
      
