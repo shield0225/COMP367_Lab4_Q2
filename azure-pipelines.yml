@@ -15,12 +15,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: UseDotNet@2
-  displayName: 'Install .NET SDK'
-  inputs:
-    version: '8.0.3'
-    packageType: 'sdk'
-
 - task: DotNetCoreCLI@2
   displayName: 'Restore NuGet Packages'
   inputs:
