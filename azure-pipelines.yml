@@ -15,8 +15,13 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- powershell: 'Write-Host "##vso[task.setvariable variable=DOTNET_ROOT]C:\Program Files\dotnet"'
+
+- task: PowerShell@2
   displayName: 'Set DOTNET_ROOT'
+  inputs:
+    targetType: 'inline'
+    script: 'Write-Host "##vso[task.setvariable variable=DOTNET_ROOT]C:\Program Files\dotnet"'
+    pwsh: true
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore NuGet Packages'
