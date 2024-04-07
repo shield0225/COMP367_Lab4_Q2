@@ -33,7 +33,7 @@ steps:
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) /p:PackageVersion=1.0.0-$(VersionSuffix)'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) /p:PackageVersion=1.1.1-CI-$(Build.BuildId)'
     includesource: true
     versioningScheme: 'byPrereleaseNumber'
     majorVersion: '1'
