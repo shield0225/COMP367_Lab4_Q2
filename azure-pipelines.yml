@@ -43,9 +43,8 @@ steps:
     publishLocation: 'container'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Push to Azure Artifacts'
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
-    nugetConfigPath: 'NuGet.config'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    nuGetFeedType: 'internal'
     publishVstsFeed: 'e0e8f572-92bc-4b4e-9732-9dfb3df5bede'
