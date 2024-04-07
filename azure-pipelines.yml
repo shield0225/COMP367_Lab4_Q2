@@ -15,11 +15,8 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: UseDotNet@2
-  displayName: 'Install .NET 8.0 SDK'
-  inputs:
-    version: '8.0.x'
-    packageType: 'sdk'
+- powershell: 'Write-Host "##vso[task.setvariable variable=DOTNET_ROOT]C:\Program Files\dotnet"'
+  displayName: 'Set DOTNET_ROOT'
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore NuGet Packages'
